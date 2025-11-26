@@ -8,6 +8,20 @@ SECRET_KEY = 'dev-secret'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+# Add Codespace host if available (e.g. <CODESPACE_NAME>-8000.app.github.dev)
+codespace_name = os.environ.get('CODESPACE_NAME')
+if codespace_name:
+    codespace_host = f"{codespace_name}-8000.app.github.dev"
+    ALLOWED_HOSTS.insert(0, codespace_host)
+    # Trust the codespace origin for CSRF when present
+    CSRF_TRUSTED_ORIGINS = [f"https://{codespace_host}"]
+else:
+    CSRF_TRUSTED_ORIGINS = []
+
+# For development in Codespaces, avoid forcing SSL redirects
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 INSTALLED_APPS = [
     'django.contrib.admin',
