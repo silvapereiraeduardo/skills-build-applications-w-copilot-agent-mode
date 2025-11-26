@@ -63,9 +63,8 @@ def populate(uri=None, dbname='octofit_db'):
 
             LeaderboardEntry.objects.create(user=orm_users[0], points=150)
             LeaderboardEntry.objects.create(user=orm_users[1], points=120)
-    except Exception:
-        # If ORM creation fails, continue — pymongo data is primary for tests
-        pass
+    except Exception as e:
+        print('Django ORM population failed:', repr(e))
 
 
 if __name__ == '__main__':
