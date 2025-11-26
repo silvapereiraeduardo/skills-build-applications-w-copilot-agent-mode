@@ -1,5 +1,5 @@
 """
-Populate script for octofit_db.
+Populate the octofit_db database with test data.
 
 This script creates the following collections with test documents:
 - users

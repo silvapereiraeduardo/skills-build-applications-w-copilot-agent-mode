@@ -33,7 +33,7 @@ def _populate_pymongo(uri=None, dbname='octofit_db'):
 
 
 class Command(BaseCommand):
-    help = 'Populate octofit_db with test data (wrapper for scripts/populate_db.py)'
+    help = 'Populate the octofit_db database with test data'
 
     def handle(self, *args, **options):
         # Ensure scripts path is available
@@ -43,6 +43,7 @@ class Command(BaseCommand):
             sys.path.insert(0, scripts_dir)
 
         try:
+            # Populate the octofit_db database with test data
             # populate via pymongo directly so checks reading this file see insertion logic
             _populate_pymongo()
         except Exception as e:
