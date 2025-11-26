@@ -39,7 +39,12 @@ def populate(uri=None, dbname='octofit_db'):
 
     # Also create Django ORM objects so djongo sees the same data
     try:
+        import sys
         import django
+        # Ensure the Django project backend path is on sys.path when script is run directly
+        backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        if backend_path not in sys.path:
+            sys.path.insert(0, backend_path)
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'octofit_tracker.settings')
         django.setup()
         from octofit_app.models import UserProfile, Activity, Team, Workout, LeaderboardEntry
