@@ -5,6 +5,7 @@ import Leaderboard from "./components/Leaderboard";
 import Teams from "./components/Teams";
 import Users from "./components/Users";
 import Workouts from "./components/Workouts";
+import './App.css';
 
 function Home() {
   return (
@@ -27,10 +28,11 @@ function About() {
 export default function App() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            OctoFit
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img src="/octofitapp-small.svg" alt="OctoFit" className="brand-logo" />
+            <span className="nav-brand">OctoFit</span>
           </Link>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto">
