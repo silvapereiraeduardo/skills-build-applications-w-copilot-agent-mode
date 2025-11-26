@@ -1,3 +1,17 @@
+"""
+Populate script for octofit_db.
+
+This script creates the following collections with test documents:
+- users
+- activities
+- teams
+- workouts
+- leaderboard
+
+It uses pymongo to insert documents and also attempts to create Django ORM
+objects so `djongo`-backed ORM queries can see the test data.
+"""
+
 from pymongo import MongoClient
 import os
 
@@ -12,16 +26,17 @@ def populate(uri=None, dbname='octofit_db'):
         if coll in db.list_collection_names():
             db.drop_collection(coll)
 
-    # Insert users
-    users = []
-    for i in range(1, 6):
-        doc = {'username': f'user{i}', 'email': f'user{i}@example.com'}
-        users.append(db.users.insert_one(doc).inserted_id)
+    # Insert users using insert_many
+    user_docs = [{'username': f'user{i}', 'email': f'user{i}@example.com'} for i in range(1, 6)]
+    result = db.users.insert_many(user_docs)
+    users = result.inserted_ids
 
-    # Insert activities (2 per user)
+    # Insert activities (2 per user) using insert_many
+    activity_docs = []
     for uid in users:
-        db.activities.insert_one({'user_id': uid, 'name': 'Run', 'duration_minutes': 30, 'calories': 250})
-        db.activities.insert_one({'user_id': uid, 'name': 'Bike', 'duration_minutes': 45, 'calories': 400})
+        activity_docs.append({'user_id': uid, 'name': 'Run', 'duration_minutes': 30, 'calories': 250})
+        activity_docs.append({'user_id': uid, 'name': 'Bike', 'duration_minutes': 45, 'calories': 400})
+    db.activities.insert_many(activity_docs)
 
     # Teams
     team_doc = {'name': 'Alpha Team', 'member_ids': users[:2]}
