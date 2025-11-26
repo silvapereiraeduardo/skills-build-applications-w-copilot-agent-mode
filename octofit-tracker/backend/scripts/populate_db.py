@@ -37,6 +37,36 @@ def populate(uri=None, dbname='octofit_db'):
 
     print('Populated octofit_db with test data (pymongo)')
 
+    # Also create Django ORM objects so djongo sees the same data
+    try:
+        import django
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'octofit_tracker.settings')
+        django.setup()
+        from octofit_app.models import UserProfile, Activity, Team, Workout, LeaderboardEntry
+
+        # Create ORM entries if none exist
+        if UserProfile.objects.count() == 0:
+            orm_users = []
+            for i in range(1, 6):
+                u = UserProfile.objects.create(username=f'user{i}', email=f'user{i}@example.com')
+                orm_users.append(u)
+
+            for u in orm_users:
+                Activity.objects.create(user=u, name='Run', duration_minutes=30, calories=250)
+                Activity.objects.create(user=u, name='Bike', duration_minutes=45, calories=400)
+
+            team = Team.objects.create(name='Alpha Team')
+            team.members.set(orm_users[:2])
+
+            Workout.objects.create(user=orm_users[0], title='Morning Run', duration_minutes=20)
+            Workout.objects.create(user=orm_users[1], title='Evening Ride', duration_minutes=45)
+
+            LeaderboardEntry.objects.create(user=orm_users[0], points=150)
+            LeaderboardEntry.objects.create(user=orm_users[1], points=120)
+    except Exception:
+        # If ORM creation fails, continue — pymongo data is primary for tests
+        pass
+
 
 if __name__ == '__main__':
     populate()
