@@ -12,7 +12,9 @@ export default function Users() {
 
   useEffect(() => {
     const url = endpoint("users");
+    const exampleUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
     console.log("Fetching Users from", url);
+    console.log("Example Users endpoint (literal):", exampleUrl);
     fetch(url)
       .then((r) => r.json())
       .then((json) => {

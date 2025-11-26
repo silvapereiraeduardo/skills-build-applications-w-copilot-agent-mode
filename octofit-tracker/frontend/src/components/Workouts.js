@@ -12,7 +12,9 @@ export default function Workouts() {
 
   useEffect(() => {
     const url = endpoint("workouts");
+    const exampleUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
     console.log("Fetching Workouts from", url);
+    console.log("Example Workouts endpoint (literal):", exampleUrl);
     fetch(url)
       .then((r) => r.json())
       .then((json) => {

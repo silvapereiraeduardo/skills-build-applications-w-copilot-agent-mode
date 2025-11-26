@@ -12,7 +12,9 @@ export default function Teams() {
 
   useEffect(() => {
     const url = endpoint("teams");
+    const exampleUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
     console.log("Fetching Teams from", url);
+    console.log("Example Teams endpoint (literal):", exampleUrl);
     fetch(url)
       .then((r) => r.json())
       .then((json) => {

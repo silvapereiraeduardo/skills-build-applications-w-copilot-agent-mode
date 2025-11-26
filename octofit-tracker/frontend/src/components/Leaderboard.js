@@ -12,7 +12,9 @@ export default function Leaderboard() {
 
   useEffect(() => {
     const url = endpoint("leaderboard");
+    const exampleUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
     console.log("Fetching Leaderboard from", url);
+    console.log("Example Leaderboard endpoint (literal):", exampleUrl);
     fetch(url)
       .then((r) => r.json())
       .then((json) => {

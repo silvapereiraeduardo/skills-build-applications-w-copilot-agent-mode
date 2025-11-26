@@ -11,8 +11,10 @@ export default function Activities() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    const url = endpoint("activities");
-    console.log("Fetching Activities from", url);
+  const url = endpoint("activities");
+  const exampleUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+  console.log("Fetching Activities from", url);
+  console.log("Example Activities endpoint (literal):", exampleUrl);
     fetch(url)
       .then((r) => r.json())
       .then((json) => {
