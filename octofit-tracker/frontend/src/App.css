@@ -1,14 +1,14 @@
 /* Simple App styling to complement Bootstrap */
-:root{
-  --accent:#0d6efd;
-  --bg:#0f1720; /* dark slate */
-  --panel:#0b1220; /* slightly lighter */
-  --muted:#98a0b3;
-  --card:#0c1a2b;
-  --table-row:#0e2133;
+:root {
+  --accent: #0d6efd;
+  --bg: #0f1720; /* dark slate */
+  --panel: #0b1220; /* slightly lighter */
+  --muted: #98a0b3;
+  --card: #0c1a2b;
+  --table-row: #0e2133;
 }
 body {
-  background: linear-gradient(180deg,#071025 0%, #071a2b 100%);
+  background: linear-gradient(180deg, #071025 0%, #071a2b 100%);
   color: #e6eef8;
 }
 .app-container {
@@ -16,8 +16,8 @@ body {
 }
 .card-table {
   margin-top: 1rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 .table-fixed {
   table-layout: fixed;
@@ -30,36 +30,45 @@ body {
 .small-muted {
   color: var(--muted);
 }
-.table thead th{
-  background: rgba(13,110,253,0.06);
+.table thead th {
+  background: rgba(13, 110, 253, 0.06);
   color: #dbeeff;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: rgba(255,255,255,0.02);
+  background-color: rgba(255, 255, 255, 0.02);
 }
-.btn-primary{
+.btn-primary {
   background-color: var(--accent);
-  border-color: rgba(255,255,255,0.06);
+  border-color: rgba(255, 255, 255, 0.06);
 }
-.btn-outline-secondary{
-  color:#cfe1ff;
-  border-color: rgba(255,255,255,0.06);
+.btn-outline-secondary {
+  color: #cfe1ff;
+  border-color: rgba(255, 255, 255, 0.06);
 }
-h1,h2,h3,h4{
+h1,
+h2,
+h3,
+h4 {
   color: #eaf6ff;
 }
-a{
+a {
   color: var(--accent);
 }
-.navbar{
-  background: rgba(4,10,20,0.6);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+.navbar {
+  background: rgba(4, 10, 20, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
-.brand-logo{
-  height:32px;
-  margin-right:8px;
+.brand-logo {
+  height: 32px;
+  margin-right: 8px;
 }
-.navbar .container{display:flex;align-items:center}
-.navbar .nav-link{color:#cfe1ff}
-.navbar .nav-link:hover{color:var(--accent)}
-
+.navbar .container {
+  display: flex;
+  align-items: center;
+}
+.navbar .nav-link {
+  color: #cfe1ff;
+}
+.navbar .nav-link:hover {
+  color: var(--accent);
+}
